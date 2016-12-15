@@ -1,0 +1,32 @@
+<%@ page pageEncoding="UTF-8" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="<c:url value="/static/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" />" />
+		<link type="text/css" rel="stylesheet" href="<c:url value="/static/libs/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" />" />
+	
+		<link type="text/css" rel="stylesheet" href="<c:url value="/static/style.css" />" />
+	</head>
+	<body>
+		<jsp:useBean id="navigation" class="iglabs.assistant.jsp.beans.NavigationBean" scope="page">
+			<jsp:setProperty name="navigation" property="pageContext" value="${pageContext}" />
+		</jsp:useBean>
+	
+		<nav class="navbar navbar-default">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Ассистент</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="${navigation.itemsSection ? 'active' : ''}"><a href="<c:url value="/pages/items.jsp" />">Номенклатура</a></li>
+				
+				<c:if test="${ fn:contains(pageContext.request.requestURI, 'orders') }">
+				<li class="active"><a href="<c:url value="/pages/orders.jsp" />">Заказы</a></li>
+				</c:if>
+				<c:if test="${ not fn:contains(pageContext.request.requestURI, 'orders') }">
+				<li><a href="<c:url value="/pages/orders.jsp" />">Заказы</a></li>
+				</c:if>
+			</ul>
+		</nav>
+		<div class="container-main">
