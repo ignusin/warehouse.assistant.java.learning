@@ -16,17 +16,11 @@
 	
 		<nav class="navbar navbar-default">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Ассистент</a>
+				<a class="navbar-brand" href="#">Warehouse Assistant</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="${navigation.itemsSection ? 'active' : ''}"><a href="<c:url value="/pages/items.jsp" />">Номенклатура</a></li>
-				
-				<c:if test="${ fn:contains(pageContext.request.requestURI, 'orders') }">
-				<li class="active"><a href="<c:url value="/pages/orders.jsp" />">Заказы</a></li>
-				</c:if>
-				<c:if test="${ not fn:contains(pageContext.request.requestURI, 'orders') }">
-				<li><a href="<c:url value="/pages/orders.jsp" />">Заказы</a></li>
-				</c:if>
+				<li class="${navigation.itemsSection ? 'active' : ''}"><a href="<c:url value="/pages/items.jsp" />">Items</a></li>
+				<li class="${navigation.ordersSection ? 'active' : '' }"><a href="<c:url value="/pages/orders.jsp" />">Orders</a></li>
 			</ul>
 		</nav>
 		<div class="container-main">

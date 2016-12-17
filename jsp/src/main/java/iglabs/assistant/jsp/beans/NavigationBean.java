@@ -37,4 +37,8 @@ public class NavigationBean {
 	public boolean isItemsSection() {
 		return relativePathEquals("/") || relativePathContains("items");
 	}
+	
+	public boolean isOrdersSection() {
+		return relativePathContains("orders");
+	}
 }
