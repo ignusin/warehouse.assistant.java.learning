@@ -44,7 +44,7 @@ public class JdbcItemsDao implements ItemsDao {
 		return item;
 	}
 	
-	public List<Item> getItems() {
+	public List<Item> list() {
 		try (Connection conn = getDataSourceFactory().getDataSource().getConnection()) {
 			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM \"items\" ORDER BY \"item_no\"");
 			ResultSet resultSet = stmt.executeQuery();

@@ -6,7 +6,7 @@ import iglabs.assistant.jsp.models.Item;
 
 
 public interface ItemsDao {
-	List<Item> getItems();
+	List<Item> list();
 	Item get(int id);
 	
 	void add(Item item);

@@ -56,7 +56,7 @@ public class ItemFormServlet extends HttpServlet {
 		
 		if (validation.hasErrors()) {
 			request
-				.getRequestDispatcher("/pages/items-form.jsp")
+				.getRequestDispatcher("/pages/item-form.jsp")
 				.forward(request, response);
 		}
 		else {

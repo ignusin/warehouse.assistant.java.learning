@@ -35,10 +35,10 @@ public class NavigationBean {
 	}
 	
 	public boolean isItemsSection() {
-		return relativePathEquals("/") || relativePathContains("items");
+		return relativePathEquals("/") || relativePathContains("item");
 	}
 	
 	public boolean isOrdersSection() {
-		return relativePathContains("orders");
+		return relativePathContains("order");
 	}
 }

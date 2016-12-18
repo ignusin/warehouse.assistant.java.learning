@@ -1,11 +1,11 @@
 <%@ page pageEncoding="UTF-8" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<jsp:useBean id="itemsBean" class="iglabs.assistant.jsp.beans.ItemsBean" scope="page" />
-<c:set value="${itemsBean.items}" var="items" scope="page" />
+<jsp:useBean id="itemsListBean" class="iglabs.assistant.jsp.beans.ItemsListBean" scope="page" />
+<c:set value="${itemsListBean.items}" var="items" scope="page" />
 
 <div>
-	<a href="<c:url value="/pages/items-form.jsp" />" class="btn btn-primary">Add new item</a>
+	<a href="<c:url value="/pages/item-form.jsp" />" class="btn btn-primary">Add new item</a>
 </div>
 
 <div class="space-15"></div>
@@ -40,8 +40,8 @@
 				<td>${item.unit}</td>
 				<td>${item.inStock}</td>
 				<td class="col-buttons-2">
-					<a href="<c:url value="/pages/items-form.jsp" />?id=${item.id}" class="btn btn-default btn-xs">Edit</a>
-					<a href="<c:url value="/pages/items-remove.jsp" />?id=${item.id}" class="btn btn-danger btn-xs">Delete</a>
+					<a href="<c:url value="/pages/item-form.jsp" />?id=${item.id}" class="btn btn-default btn-xs">Edit</a>
+					<a href="<c:url value="/pages/item-remove.jsp" />?id=${item.id}" class="btn btn-danger btn-xs">Delete</a>
 				</td>
 			</tr>
 			</c:forEach>

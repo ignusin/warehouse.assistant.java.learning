@@ -7,12 +7,12 @@ import iglabs.assistant.jsp.persistence.ItemsDao;
 import iglabs.assistant.jsp.persistence.JdbcItemsDao;
 import iglabs.assistant.jsp.persistence.JndiDataSourceFactory;
 
-public class ItemsBean {
+public class ItemsListBean {
 	private ItemsDao itemsDao;
 	private List<Item> items;
 	
 	
-	public ItemsBean() {
+	public ItemsListBean() {
 		JdbcItemsDao itemsDao = new JdbcItemsDao();
 		itemsDao.setDataSourceFactory(new JndiDataSourceFactory());
 		
@@ -29,7 +29,7 @@ public class ItemsBean {
 	
 	public List<Item> getItems() {
 		if (items == null) {
-			items = getItemsDao().getItems();
+			items = getItemsDao().list();
 		}
 		
 		return items;
