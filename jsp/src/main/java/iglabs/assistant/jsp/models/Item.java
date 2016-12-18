@@ -1,4 +1,4 @@
-package iglabs.assistant.jsp.model;
+package iglabs.assistant.jsp.models;
 
 public class Item {
 	private int id;
@@ -6,7 +6,7 @@ public class Item {
 	private String name;
 	private String description;
 	private String unit;
-	private int inStock;
+	private double inStock;
 	
 	
 	public int getId() {
@@ -49,11 +49,11 @@ public class Item {
 		this.unit = unit;
 	}
 
-	public int getInStock() {
+	public double getInStock() {
 		return inStock;
 	}
 
-	public void setInStock(int inStock) {
+	public void setInStock(double inStock) {
 		this.inStock = inStock;
 	}
 }

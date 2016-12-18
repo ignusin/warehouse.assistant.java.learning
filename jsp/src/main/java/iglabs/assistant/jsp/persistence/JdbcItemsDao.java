@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import iglabs.assistant.jsp.model.Item;
+
+import iglabs.assistant.jsp.models.Item;
 
 public class JdbcItemsDao implements ItemsDao {
 
@@ -38,7 +39,7 @@ public class JdbcItemsDao implements ItemsDao {
 		item.setName(resultSet.getString("name"));
 		item.setDescription(resultSet.getString("description"));
 		item.setUnit(resultSet.getString("unit"));
-		item.setInStock(resultSet.getInt("in_stock"));
+		item.setInStock(resultSet.getDouble("in_stock"));
 		
 		return item;
 	}
@@ -53,5 +54,60 @@ public class JdbcItemsDao implements ItemsDao {
 		catch (Exception ex) {
 			throw new RuntimeException(ex);
 		}
+	}
+	
+	public Item get(int id) {
+		try (Connection conn = getDataSourceFactory().getDataSource().getConnection()) {
+			PreparedStatement stmt = conn.prepareStatement("SELECT * FROM \"items\" WHERE \"id\"=?");
+			stmt.setInt(1, id);
+			
+			ResultSet resultSet = stmt.executeQuery();
+			
+			return extractItem(resultSet);
+		}
+		catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+	
+	public void add(Item item) {
+		String query = "INSERT INTO \"items\" (\"item_no\", \"name\", "
+			+ "\"description\", \"unit\", \"in_stock\")  VALUES(?, ?, ?, ?, ?)";
+		
+		try (Connection conn = getDataSourceFactory().getDataSource().getConnection()) {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			
+			stmt.setString(1, item.getItemNo());
+			stmt.setString(2, item.getName());
+			stmt.setString(3, item.getDescription());
+			stmt.setString(4, item.getUnit());
+			stmt.setDouble(5, item.getInStock());
+			
+			stmt.execute();
+		}
+		catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+	
+	public void update(Item item) {
+		String query = "UPDATE \"items\" set \"item_no\"=?, \"name\"=?, "
+				+ "\"description\"=?, \"unit\"=?, \"in_stock\"=? WHERE \"id\"=?";
+			
+		try (Connection conn = getDataSourceFactory().getDataSource().getConnection()) {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			
+			stmt.setString(1, item.getItemNo());
+			stmt.setString(2, item.getName());
+			stmt.setString(3, item.getDescription());
+			stmt.setString(4, item.getUnit());
+			stmt.setDouble(5, item.getInStock());
+			stmt.setInt(6, item.getId());
+			
+			stmt.execute();
+		}
+		catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}		
 	}
 }

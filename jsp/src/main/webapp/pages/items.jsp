@@ -5,10 +5,10 @@
 <c:set value="${itemsBean.items}" var="items" scope="page" />
 
 <div>
-	<a href="<c:url value="/pages/items_form.jsp" />" class="btn btn-primary">Add new item</a>
+	<a href="<c:url value="/pages/items-form.jsp" />" class="btn btn-primary">Add new item</a>
 </div>
 
-<div class="space15"></div>
+<div class="space-15"></div>
 
 <div>
 	<table class="table table-striped table-bordered">
@@ -29,6 +29,22 @@
 					No items found.
 				</td>
 			</tr>
+			</c:if>
+			
+			<c:if test="${items.size() > 0}">
+			<c:forEach var="item" items="${items}">
+			<tr>
+				<td>${item.itemNo}</td>
+				<td>${item.name}</td>
+				<td>${item.description}</td>
+				<td>${item.unit}</td>
+				<td>${item.inStock}</td>
+				<td class="col-buttons-2">
+					<a href="<c:url value="/pages/items-form.jsp" />?id=${item.id}" class="btn btn-default btn-xs">Edit</a>
+					<a href="<c:url value="/pages/items-remove.jsp" />?id=${item.id}" class="btn btn-danger btn-xs">Delete</a>
+				</td>
+			</tr>
+			</c:forEach>
 			</c:if>
 		</tbody>
 	</table>

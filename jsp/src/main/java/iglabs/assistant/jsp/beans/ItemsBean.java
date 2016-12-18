@@ -1,7 +1,8 @@
 package iglabs.assistant.jsp.beans;
 
 import java.util.List;
-import iglabs.assistant.jsp.model.Item;
+
+import iglabs.assistant.jsp.models.Item;
 import iglabs.assistant.jsp.persistence.ItemsDao;
 import iglabs.assistant.jsp.persistence.JdbcItemsDao;
 import iglabs.assistant.jsp.persistence.JndiDataSourceFactory;

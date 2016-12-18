@@ -8,13 +8,23 @@
 	<welcome-file-list>
 		<welcome-file>/pages/items.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<servlet>
+		<servlet-name>item-form-servlet</servlet-name>
+		<servlet-class>iglabs.assistant.jsp.servlets.ItemFormServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>item-form-servlet</servlet-name>
+		<url-pattern>/servlets/items-form</url-pattern>
+	</servlet-mapping>
 
 	<jsp-config>
 		<jsp-property-group>
 			<display-name>header-footer</display-name>
 			<url-pattern>/pages/*</url-pattern>
-			<include-prelude>/WEB-INF/jspx/header.jspf</include-prelude>
-			<include-coda>/WEB-INF/jspx/footer.jspf</include-coda>
+			<include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
+			<include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
 		</jsp-property-group>
 	</jsp-config>
 
