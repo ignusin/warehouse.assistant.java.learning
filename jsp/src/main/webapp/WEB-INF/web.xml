@@ -18,6 +18,20 @@
 		<servlet-name>item-form-servlet</servlet-name>
 		<url-pattern>/servlets/items-form</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>item-remove-servlet</servlet-name>
+		<servlet-class>iglabs.assistant.jsp.servlets.ItemRemoveServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>item-remove-servlet</servlet-name>
+		<url-pattern>/servlets/item-remove</url-pattern>
+	</servlet-mapping>
+	
+	<listener>
+		<listener-class>iglabs.assistant.jsp.listeners.ApplicationListener</listener-class>
+	</listener>
 
 	<jsp-config>
 		<jsp-property-group>

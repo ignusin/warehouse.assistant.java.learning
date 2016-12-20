@@ -1,13 +1,12 @@
 package iglabs.assistant.jsp.validation;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 
 public class RequestValidator {
 	public static ModelValidation validate(
 		HttpServletRequest request,
-		List<ValidationRule> rules) {
+		Iterable<ValidationRule> rules) {
 		
 		ModelValidation result = new ModelValidation();
 		

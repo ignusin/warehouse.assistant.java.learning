@@ -1,0 +1,8 @@
+package iglabs.assistant.jsp.parsing;
+
+public class IntegerParser implements TypeParser {
+	@Override
+	public Object parse(String value) {
+		return Integer.parseInt(value);
+	}
+}

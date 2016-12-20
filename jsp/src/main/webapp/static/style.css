@@ -6,6 +6,10 @@
 	height: 15px;
 }
 
+.inline-space-15 {
+	margin-left: 15px;
+}
+
 .col-buttons-2 {
 	text-align: center;
 	min-width: 170px;

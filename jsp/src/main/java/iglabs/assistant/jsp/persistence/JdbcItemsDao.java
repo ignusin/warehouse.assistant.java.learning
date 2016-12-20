@@ -110,4 +110,19 @@ public class JdbcItemsDao implements ItemsDao {
 			throw new RuntimeException(ex);
 		}		
 	}
+	
+	public void remove(int id) {
+		String query = "DELETE FROM \"items\" WHERE \"id\"=?";
+		
+		try (Connection conn = getDataSourceFactory().getDataSource().getConnection()) {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			
+			stmt.setInt(1, id);
+			
+			stmt.execute();
+		}
+		catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}
+	}
 }

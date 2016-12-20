@@ -11,4 +11,5 @@ public interface ItemsDao {
 	
 	void add(Item item);
 	void update(Item item);
+	void remove(int id);
 }

@@ -1,8 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<a href="<c:url value="/pages/items.jsp" />" class="btn btn-primary">Return to items</a>
-
 <c:choose>
 <c:when test="${empty param.id}">
 <h3>Add new item form</h3>
@@ -12,7 +10,7 @@
 </c:otherwise>
 </c:choose>
 
-<c:if test="${not empty param.id && not validation }">
+<c:if test="${not empty param.id && empty validation }">
 	<jsp:useBean id="itemFormBean" class="iglabs.assistant.jsp.beans.ItemFormBean" scope="page">
 		<jsp:setProperty name="itemFormBean" property="id" value="${param.id}" />
 	</jsp:useBean>
@@ -22,7 +20,7 @@
 <jsp:useBean id="validation" class="iglabs.assistant.jsp.validation.ModelValidation" scope="request" />
 
 <form method="POST" action="<c:url value="/servlets/items-form"/>">
-	<input type="hidden" name="id" value="${ item.id }" />
+	<input type="hidden" name="id" value="${ param.id }" />
 
 	<div class="form-group ${ validation.hasErrors('itemNo') ? 'has-error' : '' }">
 		<label>Item No:</label>
@@ -65,7 +63,9 @@
 	</div>
 	
 	<div class="form-group">
+		<a href="<c:url value="/pages/items.jsp" />" class="btn btn-default">Return to items</a>
+		<span class="inline-space-15"></span>
 		<button type="submit" class="btn btn-primary">Save changes</button>
-		<button type="reset" class="btn btn-default">Reset form</button>
+		<button type="reset" class="btn btn-success">Reset form</button>
 	</div>
 </form>
