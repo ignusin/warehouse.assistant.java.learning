@@ -54,6 +54,14 @@
 		</c:forEach>
 	</div>
 	
+	<div class="form-group ${ validation.hasErrors('price') ? 'has-error' : '' }">
+		<label>Price:</label>
+		<input type="text" name="price" class="form-control" value="<c:out value="${ param.price }" default="${ item.price }" />" />
+		<c:forEach var="error" items="${validation.getErrors('price')}">
+		<div class="text-danger">${error}</div>
+		</c:forEach>
+	</div>
+	
 	<div class="form-group ${ validation.hasErrors('inStock') ? 'has-error' : '' }">
 		<label>In stock:</label>
 		<input type="text" name="inStock" class="form-control" value="<c:out value="${ param.inStock }" default="${ item.inStock }" />" />

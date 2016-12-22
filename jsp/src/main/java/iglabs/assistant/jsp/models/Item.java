@@ -1,21 +1,13 @@
 package iglabs.assistant.jsp.models;
 
-public class Item {
-	private int id;
+public class Item extends AbstractEntity {
 	private String itemNo;
 	private String name;
 	private String description;
 	private String unit;
+	private double price;
 	private double inStock;
 	
-	
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 	public String getItemNo() {
 		return itemNo;
@@ -49,6 +41,14 @@ public class Item {
 		this.unit = unit;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+	
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
 	public double getInStock() {
 		return inStock;
 	}

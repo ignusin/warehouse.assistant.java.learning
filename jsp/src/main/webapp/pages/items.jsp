@@ -16,8 +16,9 @@
 			<tr>
 				<td class="col-md-1">Item No</td>
 				<td class="col-md-3">Item Name</td>
-				<td class="col-md-4">Description</td>
+				<td class="col-md-3">Description</td>
 				<td class="col-md-1">Unit</td>
+				<td class="col-md-1">Price</td>
 				<td class="col-md-1">In stock</td>
 				<td class="col-md-2"></td>
 			</tr>
@@ -25,7 +26,7 @@
 		<tbody>
 			<c:if test="${items.size() == 0}">
 			<tr>
-				<td colspan="6">
+				<td colspan="7">
 					No items found.
 				</td>
 			</tr>
@@ -38,6 +39,7 @@
 				<td>${item.name}</td>
 				<td>${item.description}</td>
 				<td>${item.unit}</td>
+				<td>${item.price}</td>
 				<td>${item.inStock}</td>
 				<td class="col-buttons-2">
 					<a href="<c:url value="/pages/item-form.jsp" />?id=${item.id}" class="btn btn-default btn-xs">Edit</a>

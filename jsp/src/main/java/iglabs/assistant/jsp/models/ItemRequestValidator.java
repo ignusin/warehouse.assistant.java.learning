@@ -15,6 +15,7 @@ public class ItemRequestValidator extends AbstractRequestValidator {
 		itemValidationRules.add(new ValidationRule("name", new RequiredValidator()));
 		itemValidationRules.add(new ValidationRule("description", new RequiredValidator()));
 		itemValidationRules.add(new ValidationRule("unit", new RequiredValidator()));
+		itemValidationRules.add(new ValidationRule("price", new RequiredValidator(), new DecimalValidator()));
 		itemValidationRules.add(new ValidationRule("inStock", new RequiredValidator(), new DecimalValidator()));
 		
 		return itemValidationRules;
