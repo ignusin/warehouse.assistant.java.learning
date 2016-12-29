@@ -10,16 +10,7 @@
 </c:otherwise>
 </c:choose>
 
-<c:if test="${not empty param.id && empty validation }">
-	<jsp:useBean id="itemFormBean" class="iglabs.assistant.jsp.beans.ItemFormBean" scope="page">
-		<jsp:setProperty name="itemFormBean" property="id" value="${param.id}" />
-	</jsp:useBean>
-	<c:set var="item" value="${itemFormBean.item}" scope="page" />
-</c:if>
-
-<jsp:useBean id="validation" class="iglabs.assistant.jsp.validation.ModelValidation" scope="request" />
-
-<form method="POST" action="<c:url value="/servlets/items-form"/>">
+<form method="POST" action="<c:url value="/servlets/item-form"/>">
 	<input type="hidden" name="id" value="${ param.id }" />
 
 	<div class="form-group ${ validation.hasErrors('itemNo') ? 'has-error' : '' }">

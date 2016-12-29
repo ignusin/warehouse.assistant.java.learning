@@ -1,5 +1,7 @@
 package iglabs.assistant.jsp.persistence;
 
-public interface OrdersDao {
+import iglabs.assistant.jsp.models.Order;
+
+public interface OrdersDao extends GenericDao<Order> {
 	
 }

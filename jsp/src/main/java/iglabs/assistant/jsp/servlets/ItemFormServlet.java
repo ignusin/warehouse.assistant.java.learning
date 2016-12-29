@@ -20,6 +20,7 @@ import iglabs.assistant.jsp.validation.ModelValidation;
 public class ItemFormServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	private static final String TEMPLATE_URL = "/WEB-INF/templates/item-form.jsp";
 	
 	private ItemsDao itemsDao;
 	
@@ -31,6 +32,22 @@ public class ItemFormServlet extends HttpServlet {
 		
 		this.itemsDao = itemsDao;
 	}
+	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+		if (!StringUtils.isBlank(request.getParameter("id"))) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			Item item = itemsDao.get(id);
+			request.setAttribute("item", item);
+		}
+		
+		ModelValidation validation = new ModelValidation();
+		request.setAttribute("validation", validation);
+		
+		request.getRequestDispatcher(TEMPLATE_URL).forward(request, response);
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -41,7 +58,7 @@ public class ItemFormServlet extends HttpServlet {
 		
 		if (validation.hasErrors()) {
 			request
-				.getRequestDispatcher("/pages/item-form.jsp")
+				.getRequestDispatcher(TEMPLATE_URL)
 				.forward(request, response);
 		}
 		else {

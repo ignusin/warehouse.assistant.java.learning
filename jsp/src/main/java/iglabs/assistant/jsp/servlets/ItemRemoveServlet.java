@@ -14,6 +14,7 @@ import iglabs.assistant.jsp.persistence.JndiDataSourceFactory;
 public class ItemRemoveServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private static final String TEMPLATE_URL = "/WEB-INF/templates/item-remove.jsp";
 	
 	private ItemsDao itemsDao;
 		
@@ -25,6 +26,12 @@ public class ItemRemoveServlet extends HttpServlet {
 		this.itemsDao = itemsDao;
 	}
 
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+		
+		request.getRequestDispatcher(TEMPLATE_URL).forward(request, response);
+	}
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

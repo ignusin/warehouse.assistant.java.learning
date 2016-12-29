@@ -5,7 +5,7 @@
 <c:set value="${ordersListBean.orders}" var="orders" scope="page" />
 
 <div>
-	<a href="<c:url value="/pages/order-form.jsp" />" class="btn btn-primary">Add new order</a>
+	<a href="<c:url value="/servlets/order-form" />" class="btn btn-primary">Add new order</a>
 </div>
 
 <div class="space-15"></div>
@@ -33,7 +33,7 @@
 				<td>${order.name}</td>
 				<td class="col-buttons-2">
 					<a href="<c:url value="/pages/order-details.jsp" />?id=${order.id}" class="btn btn-default btn-xs">View</a>
-					<a href="<c:url value="/pages/order-remove.jsp" />?id=${order.id}" class="btn btn-danger btn-xs">Delete</a>
+					<a href="<c:url value="/servlets/order-remove" />?id=${order.id}" class="btn btn-danger btn-xs">Delete</a>
 				</td>
 			</tr>
 			</c:forEach>

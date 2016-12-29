@@ -5,7 +5,7 @@
 <c:set value="${itemsListBean.items}" var="items" scope="page" />
 
 <div>
-	<a href="<c:url value="/pages/item-form.jsp" />" class="btn btn-primary">Add new item</a>
+	<a href="<c:url value="/servlets/item-form" />" class="btn btn-primary">Add new item</a>
 </div>
 
 <div class="space-15"></div>
@@ -42,8 +42,8 @@
 				<td>${item.price}</td>
 				<td>${item.inStock}</td>
 				<td class="col-buttons-2">
-					<a href="<c:url value="/pages/item-form.jsp" />?id=${item.id}" class="btn btn-default btn-xs">Edit</a>
-					<a href="<c:url value="/pages/item-remove.jsp" />?id=${item.id}" class="btn btn-danger btn-xs">Delete</a>
+					<a href="<c:url value="/servlets/item-form" />?id=${item.id}" class="btn btn-default btn-xs">Edit</a>
+					<a href="<c:url value="/servlets/item-remove" />?id=${item.id}" class="btn btn-danger btn-xs">Delete</a>
 				</td>
 			</tr>
 			</c:forEach>

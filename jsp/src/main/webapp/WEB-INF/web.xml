@@ -16,7 +16,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>item-form-servlet</servlet-name>
-		<url-pattern>/servlets/items-form</url-pattern>
+		<url-pattern>/servlets/item-form</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -29,14 +29,30 @@
 		<url-pattern>/servlets/item-remove</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>order-form-servlet</servlet-name>
+		<servlet-class>iglabs.assistant.jsp.servlets.OrderFormServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>order-form-servlet</servlet-name>
+		<url-pattern>/servlets/order-form</url-pattern>
+	</servlet-mapping>
+	
 	<listener>
 		<listener-class>iglabs.assistant.jsp.listeners.ApplicationListener</listener-class>
 	</listener>
 
 	<jsp-config>
 		<jsp-property-group>
-			<display-name>header-footer</display-name>
+			<display-name>pages-header-footer</display-name>
 			<url-pattern>/pages/*</url-pattern>
+			<include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
+			<include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
+		</jsp-property-group>
+		<jsp-property-group>
+			<display-name>templates-header-footer</display-name>
+			<url-pattern>/WEB-INF/templates/*</url-pattern>
 			<include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
 			<include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
 		</jsp-property-group>

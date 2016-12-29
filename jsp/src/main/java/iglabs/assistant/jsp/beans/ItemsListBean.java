@@ -9,7 +9,6 @@ import iglabs.assistant.jsp.persistence.JndiDataSourceFactory;
 
 public class ItemsListBean {
 	private ItemsDao itemsDao;
-	private List<Item> items;
 	
 	
 	public ItemsListBean() {
@@ -28,10 +27,6 @@ public class ItemsListBean {
 	}
 	
 	public List<Item> getItems() {
-		if (items == null) {
-			items = getItemsDao().list();
-		}
-		
-		return items;
+		return getItemsDao().list();
 	}
 }
