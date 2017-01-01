@@ -18,6 +18,7 @@ create table "orders" (
 create table "order_items" (
 	"id"			integer			primary key		autoincrement,
 	"order_id"		integer			not null,
+	"item_id"		integer			not null,
 	"item_no"		text			null,
 	"name"			text			null,
 	"unit"			text			null,

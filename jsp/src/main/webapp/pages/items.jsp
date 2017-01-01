@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <jsp:useBean id="itemsListBean" class="iglabs.assistant.jsp.beans.ItemsListBean" scope="page" />
 <c:set value="${itemsListBean.items}" var="items" scope="page" />
@@ -39,8 +40,8 @@
 				<td>${item.name}</td>
 				<td>${item.description}</td>
 				<td>${item.unit}</td>
-				<td>${item.price}</td>
-				<td>${item.inStock}</td>
+				<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.price}" /></td>
+				<td><fmt:formatNumber type="number" maxFractionDigits="2" value="${item.inStock}" /></td>
 				<td class="col-buttons-2">
 					<a href="<c:url value="/servlets/item-form" />?id=${item.id}" class="btn btn-default btn-xs">Edit</a>
 					<a href="<c:url value="/servlets/item-remove" />?id=${item.id}" class="btn btn-danger btn-xs">Delete</a>

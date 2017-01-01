@@ -39,6 +39,16 @@
 		<url-pattern>/servlets/order-form</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>order-remove-servlet</servlet-name>
+		<servlet-class>iglabs.assistant.jsp.servlets.OrderRemoveServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>order-remove-servlet</servlet-name>
+		<url-pattern>/servlets/order-remove</url-pattern>
+	</servlet-mapping>
+	
 	<listener>
 		<listener-class>iglabs.assistant.jsp.listeners.ApplicationListener</listener-class>
 	</listener>

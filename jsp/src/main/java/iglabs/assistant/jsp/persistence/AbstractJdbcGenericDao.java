@@ -221,6 +221,9 @@ public abstract class AbstractJdbcGenericDao<T extends Entity> implements Generi
 			stmt.setInt(1, id);
 			
 			ResultSet resultSet = stmt.executeQuery();
+			if (!resultSet.next()) {
+				return null;
+			}
 			
 			return extractItem(resultSet);
 		}
@@ -250,6 +253,13 @@ public abstract class AbstractJdbcGenericDao<T extends Entity> implements Generi
 			}
 			
 			stmt.execute();
+			
+			stmt = conn.prepareStatement("SELECT last_insert_rowid()");
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			
+			int id = rs.getInt(1);
+			entity.setId(id);
 		}
 		catch (Exception ex) {
 			throw new RuntimeException(ex);

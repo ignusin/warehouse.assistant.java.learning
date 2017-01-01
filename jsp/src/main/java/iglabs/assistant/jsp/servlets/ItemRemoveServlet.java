@@ -42,5 +42,4 @@ public class ItemRemoveServlet extends HttpServlet {
 		
 		response.sendRedirect(getServletContext().getContextPath() + "/pages/items.jsp");
 	}
-	
 }

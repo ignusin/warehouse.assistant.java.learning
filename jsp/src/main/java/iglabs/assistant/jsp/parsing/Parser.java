@@ -3,13 +3,12 @@ package iglabs.assistant.jsp.parsing;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.util.HashMap;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
 
-public class RequestParser {
+public class Parser<T> {
 	
 	private static final HashMap<Class<?>, TypeParser> typeParsers;
 
@@ -33,7 +32,17 @@ public class RequestParser {
 		typeParsers.remove(cls);
 	}
 	
-	public static <T> T parse(Class<T> cls, HttpServletRequest request) {
+	
+	
+	private final Class<T> cls;
+	private final Map<String, String> values;
+	
+	public Parser(Class<T> cls, Map<String, String> values) {
+		this.cls = cls;
+		this.values = values;
+	}
+	
+	public T parse() {
 		try {
 			PropertyDescriptor[] descriptors =
 				Introspector.getBeanInfo(cls).getPropertyDescriptors();
@@ -42,7 +51,7 @@ public class RequestParser {
 			
 			for (PropertyDescriptor descriptor: descriptors) {
 				String name = descriptor.getName();
-				String value = request.getParameter(name);
+				String value = values.get(name);
 				
 				if (!StringUtils.isEmpty(value)) {
 					TypeParser typeParser = typeParsers.get(descriptor.getPropertyType());

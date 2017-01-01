@@ -8,25 +8,17 @@ import iglabs.assistant.jsp.persistence.JdbcItemsDao;
 import iglabs.assistant.jsp.persistence.JndiDataSourceFactory;
 
 public class ItemsListBean {
-	private ItemsDao itemsDao;
+	private final ItemsDao itemsDao;
 	
 	
 	public ItemsListBean() {
 		JdbcItemsDao itemsDao = new JdbcItemsDao();
 		itemsDao.setDataSourceFactory(new JndiDataSourceFactory());
 		
-		setItemsDao(itemsDao);
-	}
-	
-	public ItemsDao getItemsDao() {
-		return itemsDao;
-	}
-	
-	public void setItemsDao(ItemsDao itemsDao) {
 		this.itemsDao = itemsDao;
 	}
 	
 	public List<Item> getItems() {
-		return getItemsDao().list();
+		return itemsDao.list();
 	}
 }

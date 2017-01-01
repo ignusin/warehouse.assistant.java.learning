@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 
 import iglabs.assistant.jsp.models.Item;
-import iglabs.assistant.jsp.models.ItemRequestValidator;
-import iglabs.assistant.jsp.parsing.RequestParser;
+import iglabs.assistant.jsp.parsing.Parser;
 import iglabs.assistant.jsp.persistence.ItemsDao;
 import iglabs.assistant.jsp.persistence.JdbcItemsDao;
 import iglabs.assistant.jsp.persistence.JndiDataSourceFactory;
+import iglabs.assistant.jsp.util.RequestParamExtractor;
 import iglabs.assistant.jsp.validation.ModelValidation;
 
 public class ItemFormServlet extends HttpServlet {
@@ -53,7 +53,8 @@ public class ItemFormServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		
-		ModelValidation validation = new ItemRequestValidator().validateRequest(request);
+		ModelValidation validation = new ItemValidator(
+				new RequestParamExtractor(request).extract()).validate();
 		request.setAttribute("validation", validation);
 		
 		if (validation.hasErrors()) {
@@ -62,7 +63,8 @@ public class ItemFormServlet extends HttpServlet {
 				.forward(request, response);
 		}
 		else {
-			Item item = RequestParser.parse(Item.class, request);
+			Item item = new Parser<Item>(Item.class,
+					new RequestParamExtractor(request).extract()).parse();
 			
 			if (StringUtils.isEmpty(request.getParameter("id"))) {
 				itemsDao.add(item);

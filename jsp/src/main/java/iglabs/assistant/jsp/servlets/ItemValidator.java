@@ -1,13 +1,18 @@
-package iglabs.assistant.jsp.models;
+package iglabs.assistant.jsp.servlets;
 
 import java.util.ArrayList;
+import java.util.Map;
 
-import iglabs.assistant.jsp.validation.AbstractRequestValidator;
+import iglabs.assistant.jsp.validation.AbstractDataValidator;
 import iglabs.assistant.jsp.validation.DecimalValidator;
 import iglabs.assistant.jsp.validation.RequiredValidator;
 import iglabs.assistant.jsp.validation.ValidationRule;
 
-public class ItemRequestValidator extends AbstractRequestValidator {
+public class ItemValidator extends AbstractDataValidator {
+	public ItemValidator(Map<String, String> values) {
+		super(values);
+	}
+	
 	@Override
 	public Iterable<ValidationRule> getValidationRules() {
 		ArrayList<ValidationRule> itemValidationRules = new ArrayList<>();
