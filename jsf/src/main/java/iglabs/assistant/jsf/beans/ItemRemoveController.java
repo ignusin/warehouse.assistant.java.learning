@@ -8,7 +8,6 @@ import org.hibernate.Session;
 
 import iglabs.assistant.jsf.model.Item;
 import iglabs.assistant.jsf.persistence.DefaultSessionProvider;
-import iglabs.assistant.jsf.persistence.SessionAction;
 import iglabs.assistant.jsf.persistence.SessionProvider;
 
 @ManagedBean
@@ -28,13 +27,10 @@ public class ItemRemoveController {
 	}
 	
 	public String delete() {
-		sessionProvider.run(new SessionAction() {
-			@Override
-			public void run(Session session) {
-				Item item = session.get(Item.class, id);
-				if (item != null) {
-					session.delete(item);
-				}
+		sessionProvider.run((Session session) -> {
+			Item item = session.get(Item.class, id);
+			if (item != null) {
+				session.delete(item);
 			}
 		});
 		

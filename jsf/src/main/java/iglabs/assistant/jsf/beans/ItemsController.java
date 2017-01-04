@@ -9,7 +9,6 @@ import org.hibernate.Session;
 
 import iglabs.assistant.jsf.model.Item;
 import iglabs.assistant.jsf.persistence.DefaultSessionProvider;
-import iglabs.assistant.jsf.persistence.SessionFunc;
 import iglabs.assistant.jsf.persistence.SessionProvider;
 
 @ManagedBean
@@ -23,15 +22,12 @@ public class ItemsController {
 	}
 	
 	public List<Item> getItems() {
-		if (items == null) {
-			items = sessionProvider.run(new SessionFunc<List<Item>>() {
-				@Override
-				public List<Item> run(Session session) {
-					return session
-						.createQuery("SELECT it FROM Item it ORDER BY it.itemNo", Item.class)
-						.getResultList();
-				}
-			}); 
+		if (items == null) {		
+			items = sessionProvider.run((Session session) -> {
+				return session
+					.createQuery("SELECT it FROM Item it ORDER BY it.itemNo", Item.class)
+					.getResultList();
+			});
 		}
 		
 		return items;
