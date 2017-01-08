@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:body>
+	<ui:composition template="/WEB-INF/templates/layout.xhtml">
+		<ui:define name="content">
+			<h3>Order Details</h3>
+			<div class="form-group">
+				<label>Name:</label>
+				<div>
+					<p class="form-control-static">#{orderDetailsController.order.name}</p>
+				</div>
+			</div>
+
+			<h:dataTable value="#{orderDetailsController.order.orderItems}" var="it"
+				styleClass="table table-striped">
+				<h:column headerClass="col-md-2">
+					<f:facet name="header">Item No</f:facet>
+    				#{it.itemNo}
+	    		</h:column>
+				<h:column headerClass="col-md-2">
+					<f:facet name="header">Name</f:facet>
+    				#{it.name}
+    			</h:column>
+				<h:column headerClass="col-md-2">
+					<f:facet name="header">Unit</f:facet>
+    				#{it.unit}
+    			</h:column>
+				<h:column headerClass="col-md-2">
+					<f:facet name="header">Price</f:facet>
+    				#{it.price}
+    			</h:column>
+				<h:column headerClass="col-md-2">
+					<f:facet name="header">Quantity</f:facet>
+					<f:facet name="footer">Total Sum:</f:facet>
+    				#{it.quantity}
+    			</h:column>
+				<h:column headerClass="col-md-2">
+					<f:facet name="header">Sum</f:facet>
+					<f:facet name="footer">#{orderDetailsController.orderItemsSum}</f:facet>
+    				#{it.quantity * it.price}
+    			</h:column>
+			</h:dataTable>
+			
+			<h:link styleClass="btn btn-default" outcome="/orders.xhtml" value="Return to orders" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

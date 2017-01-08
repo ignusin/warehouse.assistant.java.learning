@@ -8,30 +8,51 @@ import iglabs.assistant.jsf.model.Item;
 import iglabs.assistant.jsf.persistence.DefaultTransactionScope;
 import iglabs.assistant.jsf.persistence.TransactionScope;
 
+
 @ManagedBean
 @RequestScoped
-public class ItemRemoveController {
+public class ItemFormController {
 	private final TransactionScope txScope;
-		
-	public ItemRemoveController() {
-		txScope = new DefaultTransactionScope();
-	}
 	
 	@ManagedProperty(value="#{param.id}")
 	private int id;
-
+	
+	private Item item;
+	
+	public ItemFormController() {
+		txScope = new DefaultTransactionScope();
+	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
 	
-	public String delete() {
+	public Item getItem() {
+		if (item == null) {
+			if (id > 0) {
+				item = txScope.run(em -> {
+					return em.find(Item.class, id);
+				});
+			}
+			
+			if (item == null) {
+				item = new Item();
+			}
+		}
+		
+		return item;
+	}
+	
+	public String submit() {
 		txScope.run(em -> {
-			Item item = em.find(Item.class, id);
-			if (item != null) {
-				em.remove(item);
+			if (item.getId() == null) {
+				em.persist(item);
+			}
+			else {
+				em.merge(item);
 			}
 		});
 		
-		return "/items?faces-redirect=true";
+		return "items?faces-redirect=true";
 	}
 }

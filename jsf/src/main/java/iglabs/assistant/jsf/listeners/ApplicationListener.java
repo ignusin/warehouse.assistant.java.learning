@@ -3,12 +3,12 @@ package iglabs.assistant.jsf.listeners;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import iglabs.assistant.jsf.persistence.SessionFactoryHolder;
+import iglabs.assistant.jsf.persistence.EntityManagerFactoryHolder;
 
 public class ApplicationListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		SessionFactoryHolder.getInstance().init();
+		EntityManagerFactoryHolder.getInstance().init();
 	}
 
 	@Override

@@ -8,16 +8,16 @@
 <h:body>
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
     	<ui:define name="content">
-    		<h3>Remove Item</h3>
+    		<h3>Remove Order</h3>
     		<h:form>
     			<input type="hidden" name="id" value="#{param.id}" />
 	    		<p>
-	    			Are you sure you want to delete selected item?
+	    			Are you sure you want to delete selected order?
 	    		</p>
 	    		
-	    		<h:link styleClass="btn btn-default" outcome="/items.xhtml" value="Return to items" />
+	    		<h:link styleClass="btn btn-default" outcome="/orders.xhtml" value="Return to orders" />
 	    		<span class="inline-space-15"></span>
-	    		<h:commandButton styleClass="btn btn-danger" action="#{itemRemoveController.delete()}" value="Yes, please remove" />
+	    		<h:commandButton styleClass="btn btn-danger" action="#{orderRemoveController.delete()}" value="Yes, please remove" />
     		</h:form>
     	</ui:define>
     </ui:composition>

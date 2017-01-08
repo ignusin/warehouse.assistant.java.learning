@@ -1,6 +1,7 @@
 package iglabs.assistant.jsf.persistence;
 
-import org.hibernate.SessionFactory;
+import javax.persistence.EntityManagerFactory;
+
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -8,18 +9,20 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AvailableSettings;
 
 import iglabs.assistant.jsf.model.Item;
+import iglabs.assistant.jsf.model.Order;
+import iglabs.assistant.jsf.model.OrderItem;
 
-public class SessionFactoryHolder {
-	private static final SessionFactoryHolder instance = new SessionFactoryHolder();
+public class EntityManagerFactoryHolder {
+	private static final EntityManagerFactoryHolder instance = new EntityManagerFactoryHolder();
 	
-	public static SessionFactoryHolder getInstance() {
+	public static EntityManagerFactoryHolder getInstance() {
 		return instance;
 	}
 	
 	
-	private SessionFactory sessionFactory = null;
+	private EntityManagerFactory emFactory = null;
 	
-	private SessionFactoryHolder() {
+	private EntityManagerFactoryHolder() {
 	}
 	
 	public void init() {
@@ -34,12 +37,14 @@ public class SessionFactoryHolder {
 		
 		Metadata metadata = new MetadataSources(registry)
 			.addAnnotatedClass(Item.class)
+			.addAnnotatedClass(Order.class)
+			.addAnnotatedClass(OrderItem.class)
 			.buildMetadata();
 		
-		sessionFactory = metadata.buildSessionFactory();
+		emFactory = metadata.buildSessionFactory();
 	}
 	
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
+	public EntityManagerFactory getEntityManagerFactory() {
+		return emFactory;
 	}
 }

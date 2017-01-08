@@ -10,6 +10,10 @@
     	<ui:define name="content">
     		<h3>Items</h3>
     		
+    		<h:link outcome="/item-form.xhtml" styleClass="btn btn-primary">Add New Item</h:link>
+    		
+    		<div class="space-15"></div>
+    		
     		<h:form rendered="#{itemsController.items.size() > 0}">
 	    		<h:dataTable value="#{itemsController.items}" var="it" styleClass="table table-striped">
 	    			<h:column headerClass="col-md-2">
@@ -38,7 +42,7 @@
 	    			</h:column>
 	    			<h:column>
 	    				<div class="col-buttons-2">
-		    				<h:commandButton styleClass="btn btn-default btn-xs" action="itemsController.edit(it)" value="Edit"></h:commandButton>
+		    				<h:commandButton styleClass="btn btn-default btn-xs" action="#{itemsController.edit(it)}" value="Edit"></h:commandButton>
 		    				<h:commandButton styleClass="btn btn-danger btn-xs" action="#{itemsController.delete(it)}" value="Delete"></h:commandButton>
 	    				</div>
 	    			</h:column>

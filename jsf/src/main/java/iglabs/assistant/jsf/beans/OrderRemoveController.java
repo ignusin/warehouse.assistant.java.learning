@@ -4,16 +4,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import iglabs.assistant.jsf.model.Item;
+import iglabs.assistant.jsf.model.Order;
+import iglabs.assistant.jsf.model.OrderItem;
 import iglabs.assistant.jsf.persistence.DefaultTransactionScope;
 import iglabs.assistant.jsf.persistence.TransactionScope;
 
 @ManagedBean
 @RequestScoped
-public class ItemRemoveController {
+public class OrderRemoveController {
 	private final TransactionScope txScope;
 		
-	public ItemRemoveController() {
+	public OrderRemoveController() {
 		txScope = new DefaultTransactionScope();
 	}
 	
@@ -23,15 +24,21 @@ public class ItemRemoveController {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String delete() {
 		txScope.run(em -> {
-			Item item = em.find(Item.class, id);
-			if (item != null) {
-				em.remove(item);
+			Order order = em.find(Order.class, id);
+			if (order == null) {
+				return;
 			}
+			
+			for (OrderItem orderItem: order.getOrderItems()) {
+				em.remove(orderItem);
+			}
+			
+			em.remove(order);
 		});
 		
-		return "/items?faces-redirect=true";
+		return "/orders?faces-redirect=true";
 	}
 }

@@ -2,17 +2,11 @@ package iglabs.assistant.jsf.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="items")
-public class Item {
-	@Id
-	@GeneratedValue
-	private Integer id;
-	
+public class Item extends IdentityEntity {
 	@Column(name="item_no", nullable=false)
 	private String itemNo;
 	
@@ -31,14 +25,6 @@ public class Item {
 	@Column(name="in_stock", nullable=false)
 	private double inStock;
 	
-	
-	public Integer getId() {
-		return id;
-	}
-	
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	
 	public String getItemNo() {
 		return itemNo;
