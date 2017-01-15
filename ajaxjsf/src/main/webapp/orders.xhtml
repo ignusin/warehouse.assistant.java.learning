@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+<h:body>
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+    	<ui:define name="content">
+    		<h3>Orders</h3>
+    		
+    		<h:link outcome="/order-form.xhtml" styleClass="btn btn-primary">Add New Order</h:link>
+    		
+    		<div class="space-15"></div>
+    		
+    		<h:form rendered="#{ordersController.orders.size() > 0}">
+	    		<h:dataTable value="#{ordersController.orders}" var="order" styleClass="table table-striped">
+	    			<h:column headerClass="col-md-12">
+	    				<f:facet name="header">Name</f:facet>
+	    				#{order.name}
+	    			</h:column>
+	    			<h:column>
+	    				<div class="col-buttons-2">
+		    				<h:commandButton styleClass="btn btn-default btn-xs" action="#{ordersController.details(order)}" value="Details"></h:commandButton>
+		    				<h:commandButton styleClass="btn btn-danger btn-xs" action="#{ordersController.delete(order)}" value="Delete"></h:commandButton>
+	    				</div>
+	    			</h:column>
+	    		</h:dataTable>
+    		</h:form>
+    		
+    		<ui:fragment rendered="#{ordersController.orders.size() == 0}">
+	    		<p>
+	    			No orders added so far.
+	    		</p>
+    		</ui:fragment>
+    	</ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

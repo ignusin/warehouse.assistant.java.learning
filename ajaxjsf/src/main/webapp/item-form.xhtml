@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:body>
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+    	<ui:define name="content">
+    		<ui:fragment rendered="#{empty param.id}">
+    			<h3>Add Item</h3>
+    		</ui:fragment>
+    		<ui:fragment rendered="#{not empty param.id}">
+    			<h3>Edit Item</h3>
+    		</ui:fragment>
+    		<h:form>    			
+    			<div class="form-group #{!itemNoInput.valid ? 'has-error' : ''}">
+    				<label>Item No:</label>
+    				<h:inputText id="itemNo" binding="#{itemNoInput}" styleClass="form-control" value="#{itemFormController.item.itemNo}"
+    					required="true" requiredMessage="Required field">
+   					</h:inputText>
+    				<h:message for="itemNo" styleClass="text-danger" />
+    			</div>
+    			
+    			<div class="form-group #{!nameInput.valid ? 'has-error' : ''}">
+    				<label>Name:</label>
+    				<h:inputText id="name" binding="#{nameInput}" styleClass="form-control" value="#{itemFormController.item.name}"
+    					required="true" requiredMessage="Required field">
+   					</h:inputText>
+    				<h:message for="name" styleClass="text-danger" />
+    			</div>
+    			
+    			<div class="form-group #{!descrInput.valid ? 'has-error' : ''}">
+    				<label>Description:</label>
+    				<h:inputText id="description" binding="#{descrInput}" styleClass="form-control" value="#{itemFormController.item.description}"
+    					required="true" requiredMessage="Required field">
+   					</h:inputText>
+    				<h:message for="description" styleClass="text-danger" />
+    			</div>
+    			
+    			<div class="form-group #{!unitInput.valid ? 'has-error' : ''}">
+    				<label>Unit:</label>
+    				<h:inputText id="unit" binding="#{unitInput}" styleClass="form-control" value="#{itemFormController.item.unit}"
+    					required="true" requiredMessage="Required field">
+   					</h:inputText>
+    				<h:message for="unit" styleClass="text-danger" />
+    			</div>
+    			
+    			<div class="form-group #{!priceInput.valid ? 'has-error' : ''}">
+    				<label>Price:</label>
+    				<h:inputText id="price" binding="#{priceInput}" styleClass="form-control" value="#{itemFormController.item.price}"
+    					required="true" requiredMessage="Required field">
+    				</h:inputText>
+    				<h:message for="price" styleClass="text-danger" />
+    			</div>
+    			
+    			<div class="form-group #{!inStockInput.valid ? 'has-error' : ''}">
+    				<label>In stock:</label>
+    				<h:inputText id="inStock" binding="#{inStockInput}" styleClass="form-control" value="#{itemFormController.item.inStock}"
+    					required="true" requiredMessage="Required field">
+    				</h:inputText>
+    				<h:message for="inStock" styleClass="text-danger" />
+    			</div>
+
+	    		<h:link styleClass="btn btn-default" outcome="/items.xhtml" value="Return to items" />
+	    		<span class="inline-space-15"></span>
+	    		<h:commandButton styleClass="btn btn-primary" action="#{itemFormController.submit()}" value="Save changes">
+	    			<f:ajax execute="@form" render="@form" />
+	    		</h:commandButton>
+	    		<button type="reset" class="btn btn-success">Reset changes</button>
+    		</h:form>
+    	</ui:define>
+    </ui:composition>
+</h:body>
+
+</html>
